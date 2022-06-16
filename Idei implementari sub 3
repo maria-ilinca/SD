@@ -1,1 +1,74 @@
+✏️  Concateneaza k siruri sortate de lungime n => cat mai optim: O(nlogk)
+idee: folosim un min-heap in care inseram primele elemente din siruri, elim elementul radacina al minheap-ului si il punem in vectorul de output
+se introd urmatorul element din lista elementului eliminat. Pentru a obtine rezultatul, pasul continua pana cand nu mai ramane niciun element in minheap
+
+Algoritm:
+- Creati un minheap si inserati primul element din toate k tablourile.
+- Rulati o bucla pana cand dimensiunea minheap este mai mare decat zero.
+- Scoateti elementul superior al minheap si il adaugati in vectorul final.
+- Inserati urmatorul element din aceeasi matrice din care a apartinut elementul eliminat.
+
+Justificare timp: n elemente; deci n parcurgeri, iar o parcurgere a heap-ului se realiz in log (nr elem din Heap), deci in logn
+
+✏️ Se dau n siruri de caractere (peste un alfabet cu x litere, unde x este ziua dvs. de nastere),
+fiecare sir avand maxim y caractere unde y este luna nasterii si k numere, a1, a2, . . . , ak intre
+1 si n. Scrieti un algoritm care sa gaseasca al a1-lea, a2-lea, . . . , ak-lea sir in ordine alfabetica
+si DEMONSTRATI corectitudinea algoritmului si a timpului de rulare.
+
+idee: folosim o structura de tip Trie(arbore care stocheaza seturi de stringuri)
+
+Propr Trie pentru un set de siruri:
+- Nodul radacina = nodul nul.
+- Fiecare copil al nodurilor este sortat alfabetic.
+- Fiecare nod poate avea maximum 26 de copii (de la A la Z).
+- Fiecare nod (cu exceptia radacinii) poate stoca o litera a alfabetului.
+
+struct TrieNode
+{
+	struct TrieNode *children[ALPHABET_SIZE];
+
+	// isEndOfWord is true if the node represents end of a word
+	bool isEndOfWord;
+};
+
+// Returns new trie node (initialized to NULLs)
+struct TrieNode *getNode(void)
+{
+	struct TrieNode *pNode = new TrieNode;
+
+	pNode->isEndOfWord = false;
+
+	for (int i = 0; i < ALPHABET_SIZE; i++)
+		pNode->children[i] = NULL;
+
+	return pNode;
+}
+
+// If not present, inserts key into trie. If the key is prefix of trie node, just marks leaf node
+void insert(struct TrieNode *root, string key)
+{
+	struct TrieNode *pCrawl = root;
+
+	for (int i = 0; i < key.length(); i++)
+	{
+		int index = key[i] - 'a';
+		if (!pCrawl->children[index])
+			pCrawl->children[index] = getNode();
+
+		pCrawl = pCrawl->children[index];
+	}
+
+	// mark last node as leaf
+	pCrawl->isEndOfWord = true;
+}
+
+✏️  Fie X[1 :: n] si Y [1 :: n] doi vectori, fiecare continand n numere sortate. Prezentati un
+algoritm care sa gaseasca mediana celor 2n elemente. Mediana unei multimi de n elemente
+este elementul de pe pozitia [n/2] in sirul sortat. De exemplu, mediana multimii 3, 1, 7, 6, 4, 9
+este 4.
+
+
+
+
+	
 
