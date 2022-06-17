@@ -67,6 +67,23 @@ algoritm care sa gaseasca mediana celor 2n elemente. Mediana unei multimi de n e
 este elementul de pe pozitia [n/2] in sirul sortat. De exemplu, mediana multimii 3, 1, 7, 6, 4, 9
 este 4.
 
+PASI:
+
+1) Calculați medianele m1 și m2 ale tablourilor de intrare X si Y
+2) Dacă m1 și m2 sunt ambele egale, atunci am terminat.  returnează m1 (sau m2)
+3) Dacă m1 este mai mare decât m2, atunci mediana este prezentă într-unul dintre cele două subsiruri de mai jos.
+    a) De la primul element al lui ar1 la m1 (ar1[0...|_n/2_|])
+    b) De la m2 la ultimul element al ar2 (ar2[|_n/2_|...n-1])
+4) Dacă m2 este mai mare decât m1, atunci mediana este prezentă într-unul dintre cele doua subsiruri de mai jos.
+   a) De la m1 la ultimul element al lui ar1 (ar1[|_n/2_|...n-1])
+   b) De la primul element al lui ar2 la m2 (ar2[0...|_n/2_|])
+5) Repetați procesul de mai sus până la dimensiunea ambelor subsiruri devine 2.
+6) Dacă dimensiunea celor două siruri este 2, atunci utilizați formula de mai jos pentru a obține
+  mediana.
+    Mediană = (max(ar1[0], ar2[0]) + min(ar1[1], ar2[1]))/2
+    
+
+
 
 
 
